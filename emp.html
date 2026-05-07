@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Employee Salary</h2>
+
+Name:
+<input type="text" id="ename"><br><br>
+
+Basic Salary:
+<input type="text" id="basic"><br><br>
+
+<button onclick="calculateSalary()">Calculate</button>
+
+<p id="result"></p>
+
+<script>
+
+// Simple class
+class Employee {
+    constructor(name, basic) {
+        this.name = name;
+        this.basic = basic;
+    }
+
+    getSalary() {
+        let hra = this.basic * 0.2;
+        let da = this.basic * 0.1;
+        return this.basic + hra + da;
+    }
+}
+
+function calculateSalary() {
+    let name = document.getElementById("ename").value;
+    let basic = Number(document.getElementById("basic").value);
+
+    if (name === "" || isNaN(basic) || basic <= 0) {
+        document.getElementById("result").innerHTML = "Enter valid data";
+        return;
+    }
+
+    let emp = new Employee(name, basic);
+    let total = emp.getSalary();
+
+    document.getElementById("result").innerHTML =
+        "Name: " + emp.name +
+        "<br>Salary: " + total;
+}
+
+</script>
+
+</body>
+</html>
